@@ -11,3 +11,62 @@
 <p>Commit 1</p>
 <p>Commit 2</p>
 <p>Commit 3</p>
+@* mysql> INSERT INTO peoples (contact, phonenumber, email, work_address, home_address)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> INSER INTO peoples (contact, phonenumber, email, work_address, home_address) VALUES ('Lucy', 911, 'lucy@911.com', 'tech drive', 'coolest apartments');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INSER INTO peoples (contact, phonenumber, email, work_address, home_address) VAL' at line 1
+mysql> ALTER TABLE peoples DROP work_address;
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO peoples (contact, phonenumber, email, work_address, home_address) VALUES ('Lucy', 911, 'lucy@911.com', 'coolest apartments');
+ERROR 1054 (42S22): Unknown column 'work_address' in 'field list'
+mysql> DESCRIBE peoples;
++--------------+---------------------+------+-----+---------+----------------+
+| Field        | Type                | Null | Key | Default | Extra          |
++--------------+---------------------+------+-----+---------+----------------+
+| contact      | varchar(255)        | YES  |     | NULL    |                |
+| phonenumber  | int(11)             | YES  |     | NULL    |                |
+| email        | varchar(255)        | YES  |     | NULL    |                |
+| home_address | text                | YES  |     | NULL    |                |
+| id           | bigint(20) unsigned | NO   | PRI | NULL    | auto_increment |
++--------------+---------------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
+
+mysql> INSERT INTO peoples (contact, phonenumber, email, home_address) VALUES ('Lucy', 911, 'lucy@911.com', 'coolest apartments');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> DESCRIBE peoples;                                                          +--------------+---------------------+------+-----+---------+----------------+
+| Field        | Type                | Null | Key | Default | Extra          |
++--------------+---------------------+------+-----+---------+----------------+
+| contact      | varchar(255)        | YES  |     | NULL    |                |
+| phonenumber  | int(11)             | YES  |     | NULL    |                |
+| email        | varchar(255)        | YES  |     | NULL    |                |
+| home_address | text                | YES  |     | NULL    |                |
+| id           | bigint(20) unsigned | NO   | PRI | NULL    | auto_increment |
++--------------+---------------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT LAST_INSERT_ID();
++------------------+
+| LAST_INSERT_ID() |
++------------------+
+|                1 |
++------------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT * FROM peoples;
++---------+-------------+--------------+--------------------+----+
+| contact | phonenumber | email        | home_address       | id |
++---------+-------------+--------------+--------------------+----+
+| Lucy    |         911 | lucy@911.com | coolest apartments |  1 |
++---------+-------------+--------------+--------------------+----+
+1 row in set (0.01 sec) *@
+<p>Commit 4</p>
+@* mysql> INSERT INTO peoples (contact, phonenumber, email, home_address) VALUES ('Bill', 775, 'bill@bill.com', 'bills place');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO peoples (contact, phonenumber, email, home_address) VALUES ('Gill', 123, 'Gill123@mail.com', '771 21st plc');
+Query OK, 1 row affected (0.02 sec) *@
+
